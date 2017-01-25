@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Net.Http;
+using System.Net.Http;
+
 
 namespace StockDemo.ViewModel
 {
@@ -14,7 +15,7 @@ namespace StockDemo.ViewModel
         public bool IsBusy { get; set; } = false;
         public async Task<bool> GetQuote(string ticker)
         {
-            if (IsBusy) { return false};
+            if (IsBusy) { return false; };
 
             try
             {
@@ -25,7 +26,7 @@ namespace StockDemo.ViewModel
                 var client = new HttpClient();
                 var json = await client.GetStringAsync(url);
 
-                Data = JsonConvert.DeserializeObject<QuoteData>(json);
+                var Data = JsonConvert.DeserializeObject<QuoteData>(json);
             }
             catch (Exception ex)
             {

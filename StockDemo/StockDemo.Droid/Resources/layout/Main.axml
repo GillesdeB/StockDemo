@@ -1,14 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-<Button  
-    android:id="@+id/myButton"
-    android:layout_width="match_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+    android:padding="8dp">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittext_ticker"
+        android:hint="Enter ticker" />
+    <Button
+        android:id="@+id/button_getquote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get quote" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_quote"
+        android:text="Quote here" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_company"
+        android:text="Company here" />
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar1" />
 </LinearLayout>
-
