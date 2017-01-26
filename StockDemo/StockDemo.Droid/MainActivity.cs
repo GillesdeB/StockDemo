@@ -6,30 +6,51 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using StockDemo.ViewModel;
 
 namespace StockDemo.Droid
 {
-	[Activity (Label = "StockDemo.Droid", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity
-	{
-		int count = 1;
+    [Activity(Label = "Stocks", MainLauncher = true, Icon = "@drawable/icon")]
+    public class MainActivity : Activity
+    {
+        StockViewModel viewModel;
 
-		protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+            // Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.Main);
 
-			// Get our button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
-		}
-	}
+            viewModel = new StockViewModel();
+
+            // Get our button from the layout resource,
+            // and attach an event to it
+
+            var ticker = FindViewById<EditText>(Resource.Id.edittext_ticker);
+            var button = FindViewById<Button>(Resource.Id.button_getquote);
+            var labelQuote = FindViewById<TextView>(Resource.Id.text_quote);
+            var labelCompany = FindViewById<TextView>(Resource.Id.text_company);
+
+            button.Click += async (sender, args) =>
+            {
+                button.Enabled = false;
+                var result = await viewModel.GetQuote(ticker.Text);
+                if (result)
+                {
+                    labelCompany.Text = viewModel.data.Company;
+                    labelQuote.Text = viewModel.data.CurrentQuote;
+                }
+                else
+                {
+                    labelCompany.Text = string.Empty;
+                    labelQuote.Text = string.Empty;
+                }
+
+                button.Enabled = false;
+            };
+        }
+    }
 }
 
 
