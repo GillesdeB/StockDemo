@@ -8,7 +8,12 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Button Content="Hello World, Click Me!" x:Name="Button" />
+    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
+        <TextBox x:Name="TextTicker" Text="Enter ticker" />
+        <Button x:Name="ButtonGetQuote" Margin="10,5" Content="Get quote" />
+        <TextBlock x:Name="TextBlockQuote" Margin="10,5" Text="Quote here" />
+        <TextBlock x:Name="TextBlockCompany" Margin="10,5" Text="Company here" />
+        <ProgressBar x:Name="ProgressBar" Margin="10,5"  />
     </StackPanel>
+
 </Page>

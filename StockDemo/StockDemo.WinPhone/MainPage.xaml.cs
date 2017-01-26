@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockDemo.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,13 +23,30 @@ namespace StockDemo.WinPhone
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        int count = 1;
+        StockViewModel viewModel;
 
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            viewModel = new StockViewModel();
+            ButtonGetQuote.Click += ButtonGetQuote_Click;
+        }
+
+        private async void ButtonGetQuote_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonGetQuote.IsEnabled = false;
+
+            var result = await viewModel.GetQuote(TextTicker.Text);
+            if (result)
+            {
+                TextBlockCompany.Text = viewModel.data.Company;
+                TextBlockQuote.Text = viewModel.data.CurrentQuote;
+            }
+
+            ButtonGetQuote.IsEnabled = true;
         }
 
         /// <summary>
@@ -45,10 +63,10 @@ namespace StockDemo.WinPhone
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
-            Button.Click += delegate {
-                var title = string.Format("{0} clicks!", count++);
-                Button.Content = title;
-            };
+            //Button.Click += delegate {
+            //    var title = string.Format("{0} clicks!", count++);
+            //    Button.Content = title;
+            //};
         }
     }
 }
