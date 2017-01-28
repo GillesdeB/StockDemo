@@ -11,8 +11,9 @@ namespace StockDemo.ViewModel
 {
     public class StockViewModel
     {
-        public QuoteData data { get; set; } = null;
+        public QuoteData Data { get; set; } = null;
         public bool IsBusy { get; set; } = false;
+        public string ErrorMessage { get; set; } = "";
         public async Task<bool> GetQuote(string ticker)
         {
             if (IsBusy) { return false; };
@@ -39,11 +40,12 @@ namespace StockDemo.ViewModel
                 var client = new HttpClient();
                 var json = await client.GetStringAsync(url);
 
-                var Data = JsonConvert.DeserializeObject<QuoteData>(json);
+                Data = JsonConvert.DeserializeObject<QuoteData>(json);
             }
             catch (Exception ex)
             {
-                data = null;
+                ErrorMessage = ex.Message;
+                Data = null;
                 return false;
             }
             finally

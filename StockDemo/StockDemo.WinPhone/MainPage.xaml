@@ -14,6 +14,7 @@
         <TextBlock x:Name="TextBlockQuote" Margin="10,5" Text="Quote here" />
         <TextBlock x:Name="TextBlockCompany" Margin="10,5" Text="Company here" />
         <ProgressBar x:Name="ProgressBar" Margin="10,5"  />
+        <TextBlock x:Name="TextErrorMessage" Text="Error text here" Visibility="Collapsed" Foreground="Red" />
     </StackPanel>
 
 </Page>

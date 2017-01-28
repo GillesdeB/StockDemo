@@ -42,8 +42,14 @@ namespace StockDemo.WinPhone
             var result = await viewModel.GetQuote(TextTicker.Text);
             if (result)
             {
-                TextBlockCompany.Text = viewModel.data.Company;
-                TextBlockQuote.Text = viewModel.data.CurrentQuote;
+                TextBlockCompany.Text = viewModel.Data.Company;
+                TextBlockQuote.Text = viewModel.Data.CurrentQuote;
+                TextErrorMessage.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                TextErrorMessage.Text = viewModel.ErrorMessage;
+                TextErrorMessage.Visibility = Visibility.Visible;
             }
 
             ButtonGetQuote.IsEnabled = true;

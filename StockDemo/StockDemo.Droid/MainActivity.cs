@@ -38,8 +38,8 @@ namespace StockDemo.Droid
                 var result = await viewModel.GetQuote(ticker.Text);
                 if (result)
                 {
-                    labelCompany.Text = viewModel.data.Company;
-                    labelQuote.Text = viewModel.data.CurrentQuote;
+                    labelCompany.Text = viewModel.Data.Company;
+                    labelQuote.Text = viewModel.Data.CurrentQuote;
                 }
                 else
                 {
